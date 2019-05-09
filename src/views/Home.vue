@@ -34,6 +34,28 @@ export default {
   name: "home",
   data() {
     return {};
+  },
+  methods: {
+    getGenreMovies() {}
+  },
+  computed: {},
+  mounted() {
+    const genre = new Map([
+      ["Action", "액션"],
+      ["Adventure", "어드벤쳐"],
+      ["Animation", "애니메이션"],
+      ["Comedy", "코미디"],
+      ["Crime", "범죄"],
+      ["Documentary", "다큐멘터리"],
+      ["Drama", "드라마"],
+      ["Family", "가족"],
+      ["Fantasy", "판타지"],
+      ["Horror", "호러"],
+      ["Music", "음악"],
+      ["Mystery", "미스테리"],
+      ["Romance", "로맨스"],
+      ["Science Fiction", "SF"]
+    ]);
   }
 };
 </script>
