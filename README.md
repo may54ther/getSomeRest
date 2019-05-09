@@ -1,5 +1,5 @@
 # get some rest
-![LOGO](./src/assets/logo.png)
+![LOGO](./screenshot/logo.png)
 
 <br/>
 
