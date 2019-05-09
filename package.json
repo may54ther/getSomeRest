@@ -1,6 +1,7 @@
 {
-  "name": "vue-axios-movie",
+  "name": "getsomerest",
   "version": "0.1.0",
+  "author": "may54ther <aha9654@gmail.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-service": "^3.7.0",
+    "axios": "^0.18.0",
     "vue-template-compiler": "^2.5.21"
   },
   "postcss": {

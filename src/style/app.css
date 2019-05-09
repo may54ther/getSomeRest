@@ -1,0 +1,13 @@
+#app{position: relative; overflow: hidden}
+
+.header{position:relative; height:66px; padding: 20px 0; overflow: hidden; border-bottom: 1px solid #e002fa}
+.header .logo{position: absolute; top:20px; left: 50%; transform: translateX(-50%)}
+.header .logo a{display:block; width: 80px; height: 67px; background: url(../assets/logo.png) no-repeat}
+.header .button__search {position: absolute; top: 50%; right: 30px;font-size: 35px; transform: translateY(-50%)}
+.header .button__search a{color: #e002fa; padding: 0 10px}
+
+.container{position: relative;  width: 90%; margin: 50px auto}
+
+.footer {position: relative; height: 69px; border-top: 1px solid #e002fa; padding: 20px 0}
+.footer .footer__logo{position: absolute; left: 40px}
+.footer .footer__text{position: absolute; right: 40px; color: #555; line-height: 22px; letter-spacing: -1px}
