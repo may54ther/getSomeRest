@@ -64,6 +64,8 @@ export default {
         .then(res => {
           const result = res.data.results;
 
+          if (!result.length) alert("데이터가 없습니다.");
+
           result.forEach((data, idx) => {
             if (data.poster_path) {
               this.searchList.push([
@@ -79,8 +81,8 @@ export default {
           console.log(err);
         })
         .finally(() => {
-          if (this.searchList.length) this.showBtns = true;
-          else this.showBtns = false;
+          if (!this.searchList.length) this.showBtns = false;
+          else this.showBtns = true;
         });
     }
   },
