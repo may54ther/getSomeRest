@@ -4,9 +4,69 @@
 .header .logo{position: absolute; top:20px; left: 50%; transform: translateX(-50%)}
 .header .logo a{display:block; width: 80px; height: 67px; background: url(../assets/logo.png) no-repeat}
 .header .button__search {position: absolute; top: 50%; right: 30px;font-size: 35px; transform: translateY(-50%)}
-.header .button__search a{color: #e002fa; padding: 0 10px}
+.header .button__search a{padding: 0 10px}
+.header .button__search i{color: #e002fa}
 
-.container{position: relative;  width: 90%; margin: 50px auto}
+.container{position: relative}
+.content{position: relative; width: 90%; margin: 50px auto}
+
+/*MovieSlider*/
+.slider__movie{}
+.slider__movie .slider__wrap{position: relative; width:100%; height: 400px;}
+.slider__movie .slider__items{position: relative; width:100%; height: 100%;}
+.slider__movie .slider__items li{position: absolute; top:0; float: left; width:100%; height: 400px; display: none}
+.slider__movie .slider__items li.show{display: block}
+.slider__movie .slider__items li a{display:block; width:100%; height:100%}
+.slider__movie .slider__items .item__img{position: absolute; width:100%; height: 100%;left: -20%}
+.slider__movie .slider__items .item__img::after{position: absolute; top:0; left:0; width: 100%; height: 100%; background: radial-gradient(transparent, transparent, #000), radial-gradient(transparent, transparent, #000), linear-gradient(0.25turn, transparent, transparent, #000); display:block; content: ''}
+.slider__movie .slider__items .item__img img{position:relative; width:100%; height:auto}
+.slider__movie .slider__items .item__txt{position: absolute; left:55%; top: 50%; width: 32%; height:auto; min-height:220px; text-shadow: 1px 2px 3px #333; border: 8px solid #e002fa; padding:20px 30px; transform: translateY(-40%)}
+.slider__movie .slider__items .txt__title{font-weight: bold; font-size: 36px; padding:0;  text-overflow: ellipsis; overflow: hidden; white-space: nowrap}
+.slider__movie .slider__items .txt__subject{font-size:22px; padding-bottom: 22px; font-weight: 100}
+.slider__movie .slider__items .txt__desc{font-size: 18px; font-weight: 100; text-overflow: ellipsis; overflow: hidden;} 
+
+.slider__movie .slider__buttons{}
+ .slider__movie .slider__buttons li{position: absolute; top: 50%; transform: translateY(-50%)}
+.slider__movie .slider__buttons .btn__prev{left: 10px}
+.slider__movie .slider__buttons .btn__next{right: 10px}
+.slider__movie .slider__buttons button{width: 100%; height: 100%;}
+.slider__movie .slider__buttons button i{font-size: 4vw; color:#fff} 
+
+/*UpcomingList*/
+.content__upcoming {}
+.content__upcoming ul{overflow: hidden}
+.content__upcoming ul li{padding-bottom: 20px; float: left; width: 9%; margin: 0 .555%; transition: all .4s}
+.content__upcoming ul li:first-child{margin-left: 0} 
+.content__upcoming ul li:last-child{margin-right: 0}
+.content__upcoming ul li a{display: block; width: 100%; height: 100%}
+.content__upcoming .upcoming__thumbnail{width: 100%; height: auto; padding-bottom: 5px}
+.content__upcoming .upcoming__thumbnail img{width: 100%; height: auto}
+.content__upcoming .upcoming__title{text-overflow: ellipsis; white-space: nowrap; overflow: hidden}
+.content__upcoming .upcoming__release{font-weight: 100; font-size: 14px}
+@media screen and (max-width:860px){
+  .content__upcoming ul li{width: 19%}
+}
+@media screen and (max-width:480px){
+  .content__upcoming ul li{width: 48%; margin-right: 1%}
+  .content__upcoming ul li:nth-child(2n){margin-left: 1%; margin-right: 0}
+}
+
+/*GenreList*/
+.content__genre{}
+.content__genre section{position: relative; overflow: hidden}
+.content__genre section .slider__genre{width: 100%; overflow:hidden}
+.content__genre .slider__items{width: 3000px}
+.content__genre .slider__items li{float:left; width: 200px; height: 112px;}
+.content__genre .slider__items li a{position:relative; display: block; width: 100%; height: 100%}
+.content__genre .genre__thumbnail {width: 100%; height: 100%; background: url(../assets/img_nodata.png) no-repeat; background-size: contain;}
+.content__genre .genre__thumbnail img {width: 100%; height:auto}
+.content__genre .genre__title{position:absolute; bottom:0; width: 100%; text-align: center; line-height: 2em; background: rgba(0,0,0,.5); text-overflow: ellipsis; overflow: hidden; white-space: nowrap }
+.content__genre .slider__btns{position: relative}
+.content__genre .slider__btns li{position: absolute; top: 0; width: 30px; line-height: 112px}
+.content__genre .slider__btns .btn__prev{left: 0; background: linear-gradient(0.25turn, #000, #333, transparent)}
+.content__genre .slider__btns .btn__next{right: 0; background: linear-gradient(0.75turn, #000, transparent)}
+.content__genre .slider__btns button{width: 100%; height: 100%;}
+.content__genre .slider__btns button i{color: #ccc}
 
 .footer {position: relative; height: 69px; border-top: 1px solid #e002fa; padding: 20px 0}
 .footer .footer__logo{position: absolute; left: 40px}
