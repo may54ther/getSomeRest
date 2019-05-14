@@ -13,17 +13,26 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video{margin: 0; padding: 0; border: 0; font-size: 100%}
+time, mark, audio, video{margin: 0; padding: 0; border: 0; font-size: 100%; font-weight: normal}
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section{display: block}
-body, input{font-family: 'Noto Sans KR', '맑은 고딕', Dotum, "굴림", Gulim, sans-serif; font-weight: normal; font-size: 16px; color: #ccc; background-color: #000; letter-spacing: -1px}
-ol, ul{list-style: none;}
+body, input, button{font-family: 'Noto Sans KR', '맑은 고딕', Dotum, "굴림", Gulim, sans-serif;  font-size: 16px; color: #efefef; background-color: #000; letter-spacing: -1px}
+ol, ul{list-style: none}
 table{border-collapse: collapse; border-spacing: 0;}
 address{font-style: normal}
 textarea{font-family: inherit; font-size: inherit; resize: none;}
 img{border: 0; vertical-align: top}
-a{color:#fff; text-decoration: none; cursor: pointer}
-a:hover{color:#fff; text-decoration: none}
-button{border:0; background: transparent; cursor: pointer;}
+a{color:#efefef; text-decoration: none; cursor: pointer; font-weight: normal}
+a:hover{color:#efefef; text-decoration: none}
+button{border:0; background: transparent; cursor: pointer}
+
+i{color:#ccc}
+
+h2{font-size: 24px; padding-top:30px; padding-bottom: 20px}
+h3{font-size: 22px; padding-bottom: 10px; font-weight: 100}
+h4{font-size: 20px}
+h5{font-size: 18px}
+
+section{margin-bottom: 20px}
 
 .blind{position: absolute; z-index: -1px; font-size: 0; width: 0; height: 0;}
