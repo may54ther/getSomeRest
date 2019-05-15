@@ -2,13 +2,13 @@
   <section class="content__upcoming">
     <h2>현재 상영중인 영화</h2>
     <ul>
-      <li v-bind:key="upcoming[0]" v-for="upcoming in upcomingDatas">
-        <a>
+      <li v-bind:key="key" v-for="(upcoming, key) in upcomingDatas">
+        <a @click="$store.commit('routerMovieInfo', upcoming[0])">
           <div class="upcoming__thumbnail">
             <img :src="upcoming[1]" alt="포스터">
           </div>
-          <p class="upcoming__title">{{upcoming[2]}}</p>
-          <span class="upcoming__release">{{upcoming[3]}}</span>
+          <p class="upcoming__title">{{ upcoming[2] }}</p>
+          <span class="upcoming__release">{{ upcoming[3] }}</span>
         </a>
       </li>
     </ul>
@@ -24,6 +24,9 @@ export default {
     return {
       upcomingDatas: []
     };
+  },
+  computed: {
+    ...mapState(["url", "params", "imgUrl", "movieId"])
   },
   methods: {
     getUpcomingList() {
@@ -53,10 +56,11 @@ export default {
           console.log(err);
         })
         .finally(() => {});
+    },
+    routerMovieInfo(id) {
+      this.$store.commit("getMovieId", id);
+      this.$router.push({ path: `/movie/${id}` });
     }
-  },
-  computed: {
-    ...mapState(["url", "params", "imgUrl"])
   },
   created() {
     this.getUpcomingList();

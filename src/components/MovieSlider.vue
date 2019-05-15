@@ -4,7 +4,7 @@
     <div class="slider__wrap">
       <ul class="slider__items">
         <li v-bind:key="key" v-for="(item, key) in sliderItems">
-          <a>
+          <a @click="routerMovieInfo(item[0])">
             <div class="item__img">
               <img :src="item[1]" alt="슬라이드 이미지">
             </div>
@@ -44,6 +44,9 @@ export default {
       sliderItems: []
     };
   },
+  computed: {
+    ...mapState(["url", "params", "imgUrl"])
+  },
   methods: {
     getSliderItems() {
       this.axios
@@ -73,14 +76,14 @@ export default {
           console.log(err);
         })
         .finally(() => {});
+    },
+    routerMovieInfo(id) {
+      this.$store.commit("getMovieId", id);
+      this.$router.push({ path: `/movie/${id}` });
     }
-  },
-  computed: {
-    ...mapState(["url", "params", "imgUrl"])
   },
   created() {
     this.getSliderItems();
-  },
-  mounted() {}
+  }
 };
 </script>

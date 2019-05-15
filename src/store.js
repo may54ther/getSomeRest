@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import Router from "vue-router";
 
 Vue.use(Vuex);
 
@@ -40,47 +41,17 @@ export default new Vuex.Store({
       { id: 10751, eng: "Family", kor: "가족" },
       { id: 10752, eng: "War", kor: "전쟁" }
     ],
-    keyword: null,
-    searchResult: []
+    movieId: null
   },
-  getters: {
-    searchKeyword(state) {
-      return state.keyword;
-    },
-    searchResult(state) {
-      return state.searchResult;
-    }
-  },
+  getters: {},
   mutations: {
-    getSearchList(state, e) {
-      state.keyword = e.target.value;
-
-      let keywords = state.keyword;
-
-      this.axios
-        .get(this.url.TMDb + this.url.search, {
-          params: {
-            api_key: this.params.apiKey,
-            language: this.params.langKo,
-            query: keywords,
-            include_adult: "false",
-            page: 1
-          }
-        })
-        .then(res => {
-          const result = res.data.results;
-
-          console.log(result);
-          result.forEach((data, idx) => {
-            if (data.poster_path) {
-              this.searchList.push([data.id, this.imgUrl.poster + data.poster_path, data.title, data.release_date]);
-            }
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        })
-        .finally(() => {});
+    getMovieId: (state, payload) => {
+      // state.movieId = payload;
+    },
+    routerMovieInfo: (state, payload) => {
+      state.movieId = payload;
+      console.log(state.movieId);
+      this.$router.push({ path: `/movie/${id}` });
     }
   },
   actions: {}
