@@ -56,10 +56,6 @@ export default {
           console.log(err);
         })
         .finally(() => {});
-    },
-    routerMovieInfo(id) {
-      this.$store.commit("getMovieId", id);
-      this.$router.push({ path: `/movie/${id}` });
     }
   },
   created() {
