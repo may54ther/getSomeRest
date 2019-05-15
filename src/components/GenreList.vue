@@ -4,7 +4,7 @@
     <div class="slider__wrap">
       <ul class="slider__items">
         <li v-bind:key="key" v-for="(movie, key) in genreData">
-          <a @click="routerMovieInfo(movie[0])">
+          <a @click="$store.commit('routerMovieInfo', movie[0])">
             <div class="genre__thumbnail">
               <img :src="movie[2]" alt="포스터">
             </div>
@@ -76,10 +76,6 @@ export default {
           console.log(err);
         })
         .finally(() => {});
-    },
-    routerMovieInfo(id) {
-      this.$store.commit("getMovieId", id);
-      this.$router.push({ path: `/movie/${id}` });
     }
   },
   created() {

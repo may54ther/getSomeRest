@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Router from "vue-router";
+import router from "@/router.js";
 
 Vue.use(Vuex);
 
@@ -45,13 +45,10 @@ export default new Vuex.Store({
   },
   getters: {},
   mutations: {
-    getMovieId: (state, payload) => {
-      // state.movieId = payload;
-    },
     routerMovieInfo: (state, payload) => {
       state.movieId = payload;
       console.log(state.movieId);
-      this.$router.push({ path: `/movie/${id}` });
+      router.push({ path: "/movie/" + state.movieId });
     }
   },
   actions: {}
