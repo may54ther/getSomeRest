@@ -3,8 +3,8 @@
     <h3>{{ this.genreKor }}</h3>
     <div class="slider__wrap">
       <ul class="slider__items">
-        <li v-bind:key="movie[0]" v-for="movie in genreData">
-          <a>
+        <li v-bind:key="key" v-for="(movie, key) in genreData">
+          <a @click="routerMovieInfo(movie[0])">
             <div class="genre__thumbnail">
               <img :src="movie[2]" alt="포스터">
             </div>
@@ -41,6 +41,9 @@ export default {
       genreData: []
     };
   },
+  computed: {
+    ...mapState(["url", "params", "imgUrl"])
+  },
   methods: {
     getList(genreNo) {
       this.axios
@@ -73,10 +76,11 @@ export default {
           console.log(err);
         })
         .finally(() => {});
+    },
+    routerMovieInfo(id) {
+      this.$store.commit("getMovieId", id);
+      this.$router.push({ path: `/movie/${id}` });
     }
-  },
-  computed: {
-    ...mapState(["url", "params", "imgUrl"])
   },
   created() {
     this.getList(this.genreNo);

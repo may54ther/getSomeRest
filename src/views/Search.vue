@@ -6,13 +6,13 @@
     <section class="sec_search">
       <h2 class="search-word">"{{ searchWord }} " 검색결과</h2>
       <ul>
-        <li v-bind:key="search[0]" v-for="search in searchList">
-          <a>
+        <li v-bind:key="key" v-for="(search, key) in searchList">
+          <a @click="$store.commit('routerMovieInfo', search[0])">
             <div class="search__thumbnail">
               <img :src="search[1]" alt="포스터">
             </div>
-            <p class="search__title">{{search[2]}}</p>
-            <p class="search__release">{{search[3]}}</p>
+            <p class="search__title">{{ search[2] }}</p>
+            <p class="search__release">{{ search[3] }}</p>
           </a>
         </li>
       </ul>
@@ -63,9 +63,6 @@ export default {
         })
         .then(res => {
           const result = res.data.results;
-
-          if (!result.length) alert("데이터가 없습니다.");
-
           result.forEach((data, idx) => {
             if (data.poster_path) {
               this.searchList.push([
@@ -76,17 +73,20 @@ export default {
               ]);
             }
           });
+          return result.length;
+        })
+        .then(length => {
+          if (!length) {
+            alert("데이터가 없습니다.");
+            this.showBtns = false;
+          } else this.showBtns = true;
         })
         .catch(err => {
-          console.log(err);
+          console.error(err);
         })
-        .finally(() => {
-          if (!this.searchList.length) this.showBtns = false;
-          else this.showBtns = true;
-        });
+        .finally(fin => {});
     }
-  },
-  mounted() {}
+  }
 };
 </script>
 
