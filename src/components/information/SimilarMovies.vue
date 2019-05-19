@@ -65,4 +65,4 @@ export default {
 };
 </script>
 
-<style src="@/style/movieInfo.css" scoped></style>
+<style src="@/style/information.css" scoped></style>
