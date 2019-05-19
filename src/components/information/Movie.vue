@@ -9,20 +9,20 @@
         <!-- <img :src="this.movieData.poster_path" alt="포스터"> -->
       </div>
       <div class="box__txt">
-        <h3 class="txt__title">{{ this.movieData.title }}</h3>
+        <h3 class="txt__title">{{ movieData.title }}</h3>
         <dl>
           <dd class="blind">원작이름, 개봉일</dd>
-          <dt>{{this.movieData.original_title}}, {{this.movieData.release_date}}</dt>
+          <dt>{{movieData.original_title}}, {{movieData.release_date}}</dt>
 
           <dd class="blind">개봉일, 장르, 상영시간, 평점</dd>
           <dt>
-            <span class="txt__genres">{{this.genres}}</span>
-            <span class="txt__runtime">&nbsp;&nbsp;{{this.movieData.runtime}}분</span>
-            <span class="txt__vote-avg">🔥 {{this.movieData.vote_average}}/10</span>
+            <span class="txt__genres">{{genres}}</span>
+            <span class="txt__runtime">&nbsp;&nbsp;{{movieData.runtime}}분</span>
+            <span class="txt__vote-avg">🔥 {{movieData.vote_average}}/10</span>
           </dt>
         </dl>
-        <strong class="txt__tagline">{{this.movieData.tagline}}</strong>
-        <p class="txt__overview">{{this.movieData.overview}}</p>
+        <strong class="txt__tagline">{{movieData.tagline}}</strong>
+        <p class="txt__overview">{{movieData.overview}}</p>
       </div>
     </div>
   </section>
