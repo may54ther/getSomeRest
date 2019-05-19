@@ -5,6 +5,13 @@
         <span class="blind">getSomeRest</span>
       </router-link>
     </h1>
+    <span class="button__page-back">
+      <a @click="pageBack">
+        <i class="fas fa-chevron-left">
+          <span class="blind">이전 페이지</span>
+        </i>
+      </a>
+    </span>
     <span class="button__search">
       <router-link :to="{'name':'search'}">
         <i class="fas fa-search"></i>
@@ -15,6 +22,11 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  methods: {
+    pageBack() {
+      history.back();
+    }
+  }
 };
 </script>

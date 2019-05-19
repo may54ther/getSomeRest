@@ -20,8 +20,8 @@ export default new Router({
     },
     {
       path: "/movie/:id",
-      name: "movieInfo",
-      component: () => import(/* webpackChunkName: "movieInfo" */ "./views/MovieInfo.vue")
+      name: "information",
+      component: () => import(/* webpackChunkName: "information" */ "./views/Information.vue")
     },
     {
       path: "*",
