@@ -3,12 +3,12 @@
     <h3>{{ this.genreKor }}</h3>
     <div class="slider__wrap">
       <ul class="slider__items">
-        <li v-bind:key="key" v-for="(movie, key) in genreData">
-          <a @click="$store.commit('routerMovieInfo', movie[0])">
+        <li v-bind:key="key" v-for="(item, key) in genreData">
+          <a @click="$store.commit('routerMovieInfo', item.id)">
             <div class="genre__thumbnail">
-              <img :src="movie[2]" alt="포스터">
+              <img :src="item.backdrop" alt="포스터">
             </div>
-            <p class="genre__title">{{movie[1]}}</p>
+            <p class="genre__title">{{item.title}}</p>
           </a>
         </li>
       </ul>
@@ -42,7 +42,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["url", "params", "imgUrl"])
+    ...mapState(["url", "params", "imgURL"])
   },
   methods: {
     getList(genreNo) {
@@ -57,18 +57,16 @@ export default {
         })
         .then(res => {
           const result = res.data.results;
-          let idx = 0;
 
-          result.forEach(data => {
+          result.forEach((data, idx) => {
             if (idx >= 15) return;
 
             if (data.backdrop_path) {
-              this.genreData.push([
-                data.id,
-                data.title,
-                this.imgUrl.backdrop_s + data.backdrop_path
-              ]);
-              idx++;
+              this.genreData.push({
+                id: data.id,
+                title: data.title,
+                backdrop: this.imgURL.backdrop_s + data.backdrop_path
+              });
             }
           });
         })

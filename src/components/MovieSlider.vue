@@ -4,14 +4,14 @@
     <div class="slider__wrap">
       <ul class="slider__items">
         <li v-bind:key="key" v-for="(item, key) in sliderItems">
-          <a @click="$store.commit('routerMovieInfo', item[0])">
+          <a @click="$store.commit('routerMovieInfo', item.id)">
             <div class="item__img">
-              <img :src="item[1]" alt="슬라이드 이미지">
+              <img :src="item.backdrop" alt="슬라이드 이미지">
             </div>
             <div class="item__txt">
-              <h3 class="txt__title">{{item[2]}}</h3>
-              <p class="txt__subject">{{item[3]}}, {{item[4]}}</p>
-              <p class="txt__desc">{{item[5]}}</p>
+              <h3 class="txt__title">{{item.title}}</h3>
+              <p class="txt__subject">{{item.original_title}}, {{item.release_date}}</p>
+              <p class="txt__desc">{{item.overview}}</p>
             </div>
           </a>
         </li>
@@ -45,7 +45,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["url", "params", "imgUrl"])
+    ...mapState(["url", "params", "imgURL"])
   },
   methods: {
     getSliderItems() {
@@ -62,14 +62,14 @@ export default {
           result.forEach((data, idx) => {
             if (idx >= 5) return;
 
-            this.sliderItems.push([
-              data.id,
-              this.imgUrl.backdrop + data.backdrop_path,
-              data.title,
-              data.original_title,
-              data.release_date,
-              data.overview
-            ]);
+            this.sliderItems.push({
+              id: data.id,
+              backdrop: this.imgURL.backdrop + data.backdrop_path,
+              title: data.title,
+              original_title: data.original_title,
+              release_date: data.release_date,
+              overview: data.overview
+            });
           });
         })
         .catch(err => {
