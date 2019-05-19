@@ -1,23 +1,33 @@
 <template>
-  <section class="sec_credits">
+  <section class="sec__credits">
     <h2>출연진</h2>
     <div class="credits-crew inner">
       <h3>감독</h3>
-      <ul>
+      <ul class="clearfix">
         <li :key="idx" v-for="(item, idx) in movieCrew">
-          {{ item.job }} /
-          {{ item.name }}
-          <img :src="item.profile_path" alt="감독">
+          <div class="credits-img">
+            <img :src="item.profile_path" alt="감독">
+          </div>
+          <dl>
+            <dt class="blind">이름</dt>
+            <dd>{{ item.name }}</dd>
+          </dl>
         </li>
       </ul>
     </div>
     <div class="credits-cast inner">
       <h3>출연진</h3>
-      <ul>
+      <ul class="clearfix">
         <li :key="idx" v-for="(item, idx) in movieCast">
-          {{ item.character }} 역 /
-          {{ item.name }}
-          <img :src="item.profile_path" alt="배우">
+          <div class="credits-img">
+            <img :src="item.profile_path" alt="배우">
+          </div>
+          <dl>
+            <dt class="blind">배역</dt>
+            <dd>{{ item.character }} 역</dd>
+            <dt class="blind">이름</dt>
+            <dd>{{ item.name }}</dd>
+          </dl>
         </li>
       </ul>
     </div>
@@ -56,12 +66,11 @@ export default {
 
             this.movieCrew.push({
               name: data.name,
-              profile_path: this.$store.state.imgURL.poster + data.profile_path,
-              job: data.job
+              profile_path: this.$store.state.imgURL.poster + data.profile_path
             });
           });
           cast.forEach((data, idx) => {
-            if (idx >= 6) return;
+            if (idx >= 8) return;
 
             this.movieCast.push({
               character: data.character,

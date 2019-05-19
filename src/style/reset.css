@@ -18,6 +18,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section{display: block}
 body, input, button{font-family: 'Noto Sans KR', '맑은 고딕', Dotum, "굴림", Gulim, sans-serif;  font-size: 16px; color: #efefef; background-color: #000; letter-spacing: -1px}
 ol, ul{list-style: none}
+li{transition: all .4s}
 table{border-collapse: collapse; border-spacing: 0;}
 address{font-style: normal}
 textarea{font-family: inherit; font-size: inherit; resize: none;}
@@ -35,3 +36,4 @@ h5{font-size: 18px}
 section{margin-bottom: 20px}
 
 .blind{position: absolute; z-index: -1px; font-size: 0; width: 0; height: 0;}
+.clearfix::after{display: block; clear:both; content:''}

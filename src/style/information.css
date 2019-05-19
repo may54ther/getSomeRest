@@ -1,6 +1,34 @@
 .content {margin: 0; padding: 0; width:100% }
-.content section>h2, .content section .inner{ width: 90%; margin: 0 auto}
+section>h2, .content section .inner{ width: 90%; margin: 0 auto}
+section .inner img{width: 100%; height: 100%;}
+section dd{white-space: nowrap; overflow: hidden; text-overflow: ellipsis}
 
+/*sec__movie*/
 .sec__movie {height: 480px}
-.sec__credits {}
-.sec__similar {}
+
+/*sec__credits*/
+.sec__credits {background-color: #121212}
+.sec__credits>div{padding-bottom: 15px}
+.sec__credits .credits-crew li, .sec__credits .credits-cast li{float:left}
+.sec__credits dl{padding:5px 0 15px}
+
+/*sec__similar*/
+.sec__similar .movie-title{display:block; width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding-bottom: 15px}
+
+.sec__similar li, .sec__credits .credits-crew li, .sec__credits .credits-cast li{float: left; width: 9%; margin: 0 .555%}
+.sec__similar li:nth-child(10n+1),.credits-crew li:nth-child(10n+1), .sec__credits .credits-cast li:nth-child(10n+1){margin-left: 0}
+.sec__similar li:nth-child(10n),.credits-crew li:nth-child(10n), .sec__credits .credits-cast li:nth-child(10n){margin-right: 0}
+
+@media screen and (max-width:1000px) {
+  .sec__similar li, .sec__credits .credits-crew li, .sec__credits .credits-cast li{width: 12%}
+  .sec__similar li, .sec__credits .credits-crew li, .sec__credits .credits-cast li{margin: 0 0.2857%}
+  .sec__similar li:nth-child(8n+1), .sec__credits .credits-crew li:nth-child(8n+1), .sec__credits .credits-cast li:nth-child(8n+1){margin-left:0}
+  .sec__similar li:nth-child(8n), .sec__credits .credits-crew li:nth-child(8n), .sec__credits .credits-cast li:nth-child(8n){margin-right:0}
+  }
+  
+  @media screen and (max-width:860px) {
+  .sec__similar li, .sec__credits .credits-crew li, .sec__credits .credits-cast li{width: 24%}
+  .sec__similar li,  .sec__credits .credits-crew li, .sec__credits .credits-cast li{margin: 0 0.66%}
+  .sec__similar li:nth-child(4n+1), .sec__credits .credits-crew li:nth-child(4n+1), .sec__credits .credits-cast li:nth-child(4n+1){margin-left:0}
+  .sec__similar li:nth-child(4n), .sec__credits .credits-crew li:nth-child(4n), .sec__credits .credits-cast li:nth-child(4n){margin-right:0}
+  }
