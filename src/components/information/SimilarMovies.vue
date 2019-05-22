@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     reloading() {
-      history.go(0);
+      history.back(0);
     },
     getSimilarMovies(id) {
       this.axios

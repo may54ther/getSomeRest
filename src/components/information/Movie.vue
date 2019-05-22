@@ -1,23 +1,21 @@
 <template>
   <section class="sec__movie">
     <h2>영화 소개</h2>
-    <div class="movie__backdrop">
-      <!-- <img :src="this.movieData.backdrop_path" alt="배경사진"> -->
-    </div>
-    <div class="movie__box inner">
+    <div class="movie__box inner clearfix">
       <div class="box__poster">
-        <!-- <img :src="this.movieData.poster_path" alt="포스터"> -->
+        <img :src="this.movieData.poster_path" alt="포스터">
       </div>
       <div class="box__txt">
         <h3 class="txt__title">{{ movieData.title }}</h3>
-        <dl>
-          <dd class="blind">원작이름, 개봉일</dd>
-          <dt>{{movieData.original_title}}, {{movieData.release_date}}</dt>
+        <dl class="txt__desc">
+          <dd class="blind">원작이름</dd>
+          <dt class="desc1">{{movieData.original_title}}, {{movieData.release_date}}</dt>
 
-          <dd class="blind">개봉일, 장르, 상영시간, 평점</dd>
-          <dt>
+          <dd class="blind">장르, 개봉일, 상영시간, 평점</dd>
+          <dt class="desc2">
             <span class="txt__genres">{{genres}}</span>
-            <span class="txt__runtime">&nbsp;&nbsp;{{movieData.runtime}}분</span>
+            <span class="txt__release-date">{{movieData.release_date}}</span>
+            <span class="txt__runtime">{{movieData.runtime}}분</span>
             <span class="txt__vote-avg">🔥 {{movieData.vote_average}}/10</span>
           </dt>
         </dl>
@@ -36,7 +34,7 @@ export default {
   props: ["movieId"],
   data() {
     return {
-      movieData: null,
+      movieData: {},
       genres: null
     };
   },
@@ -44,6 +42,10 @@ export default {
     ...mapState(["url", "params", "imgURL"])
   },
   methods: {
+    overviewLength() {
+      let ww = window.width;
+      console.log(ww);
+    },
     getMovieData(id) {
       this.axios
         .get(this.url.TMDb + `/movie/${id}`, {
@@ -65,7 +67,10 @@ export default {
             runtime: result.runtime,
             vote_average: result.vote_average,
             tagline: result.tagline,
-            overview: result.overview
+            overview: (result.overview =
+              result.overview.length > 300
+                ? result.overview.substr(0, 300) + "..."
+                : result.overview)
           };
         })
         .catch(err => {
@@ -77,6 +82,12 @@ export default {
             temp.push(data.name);
           });
           this.genres = temp.toString().replace(/,/g, ", ");
+
+          document.querySelector(
+            ".sec__movie"
+          ).style.background = `linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url(${
+            this.movieData.backdrop_path
+          }) center / cover no-repeat`;
         });
     }
   },

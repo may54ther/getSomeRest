@@ -1,10 +1,49 @@
 .content {margin: 0; padding: 0; width:100% }
-section>h2, .content section .inner{ width: 90%; margin: 0 auto}
+section>h2, section .inner{ width: 90%; margin: 0 auto}
 section .inner img{width: 100%; height: 100%;}
 section dd{white-space: nowrap; overflow: hidden; text-overflow: ellipsis}
 
 /*sec__movie*/
-.sec__movie {height: 480px}
+
+.sec__movie{position: relative; top: 0; left:0; z-index: 10}
+.sec__movie .box__poster{float:left; width: 30%}
+.sec__movie .box__poster img{width: 100%; height: 100%}
+.sec__movie .box__txt{float:right; width: 60%; margin: 0 5%}
+.sec__movie .box__txt h3{padding-bottom: 0}
+.sec__movie .box__txt dt{padding-bottom: 25px}
+
+.sec__movie .txt__title{font-size: 36px}
+.sec__movie .txt__desc .desc1 {font-size: 20px}
+.sec__movie .txt__desc .desc2 {font-size: 24px}
+.sec__movie .txt__desc .desc2 span{margin: 0 5px}
+.sec__movie .txt__desc .desc2 span:first-child{margin-left: 0}
+.sec__movie .txt__desc .desc2 span:last-child{margin-right: 0}
+.sec__movie .txt__tagline {display:block; margin-bottom: 5px; font-weight: normal; font-size: 24px}
+.sec__movie .txt__overview{ font-size: 20px; margin-bottom: 10px}
+
+@media screen and (max-width:1200px){
+  .sec__movie .txt__title{font-size: 30px}
+  .sec__movie .txt__desc .desc1 {font-size: 18px}
+  .sec__movie .txt__desc .desc2 {font-size: 18px}
+  .sec__movie .txt__tagline {font-size: 20px}
+  .sec__movie .txt__overview{font-size: 18px}
+}
+@media screen and (max-width:860px){
+  .sec__movie .txt__desc .desc2 .txt__genres{display: block;}
+  .sec__movie .txt__desc .desc2 span{margin: 0}
+  .sec__movie .txt__desc .desc2 .txt__release-date, .sec__movie .txt__desc .desc2 .txt__runtime{padding-right: 10px}
+}
+
+@media screen and (max-width:640px){
+  .sec__movie .txt__title{font-size: 22px}
+  .sec__movie .txt__desc .desc1 {font-size: 16px}
+  .sec__movie .txt__desc .desc2 {font-size: 16px}
+  .sec__movie .txt__tagline {font-size: 18px}
+  .sec__movie .txt__overview{font-size: 16px}
+}
+
+
+
 
 /*sec__credits*/
 .sec__credits {background-color: #121212}

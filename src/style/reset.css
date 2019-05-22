@@ -13,7 +13,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video{margin: 0; padding: 0; border: 0; font-size: 100%; font-weight: normal}
+time, mark, audio, video{margin: 0; padding: 0; border: 0; font-size: 100%; font-weight: 100}
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section{display: block}
 body, input, button{font-family: 'Noto Sans KR', '맑은 고딕', Dotum, "굴림", Gulim, sans-serif;  font-size: 16px; color: #efefef; background-color: #000; letter-spacing: -1px}
@@ -27,13 +27,13 @@ a{color:#efefef; text-decoration: none; cursor: pointer; font-weight: normal}
 a:hover{color:#efefef; text-decoration: none}
 button{border:0; background: transparent; cursor: pointer}
 
-
+h1, h2, h3, h4, h5{font-weight: normal}
 h2{font-size: 24px; padding-top:30px; padding-bottom: 20px}
-h3{font-size: 22px; padding-bottom: 10px; font-weight: 100}
+h3{font-size: 22px; padding-bottom: 10px}
 h4{font-size: 20px}
 h5{font-size: 18px}
 
-section{margin-bottom: 20px}
+section{padding-bottom: 40px}
 
 .blind{position: absolute; z-index: -1px; font-size: 0; width: 0; height: 0;}
 .clearfix::after{display: block; clear:both; content:''}
