@@ -1,11 +1,12 @@
 <template>
-  <section class="sec__similar">
+  <section class="sec__similar" v-if="similarMovies.length !== 0">
     <h2>유사 영화 소개</h2>
     <ul class="inner clearfix">
       <li v-bind:key="index" v-for="(item, index) in similarMovies">
-        <a @click="$store.commit('routerMovieInfo', item.id), reloading">
+        <a @click="$store.commit('routerMovieInfo', item.id)">
           <div class="movie-img">
-            <img :src="item.poster" alt>
+            <img :src="item.poster" alt="포스터" v-if="item.poster !== null">
+            <img src="../../assets/img_no_poster.png" alt="No-Data" v-if="item.poster === null">
           </div>
           <span class="movie-title">{{ item.title }}</span>
         </a>
@@ -22,6 +23,7 @@ export default {
   props: ["movieId"],
   data() {
     return {
+      similarLength: 0,
       similarMovies: []
     };
   },
@@ -29,9 +31,6 @@ export default {
     ...mapState(["url", "params", "imgURL"])
   },
   methods: {
-    reloading() {
-      history.back(0);
-    },
     getSimilarMovies(id) {
       this.axios
         .get(this.url.TMDb + `/movie/${id}/similar`, {
@@ -44,11 +43,14 @@ export default {
           const result = res.data.results;
 
           result.forEach((data, idx) => {
-            if (data.poster_path) {
+            if (data.poster_path !== "") {
               this.similarMovies.push({
                 id: data.id,
                 title: data.title,
-                poster: this.imgURL.poster + data.poster_path
+                poster:
+                  data.poster_path === null
+                    ? null
+                    : this.imgURL.poster + data.poster_path
               });
             }
           });

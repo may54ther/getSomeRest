@@ -1,12 +1,13 @@
 <template>
   <section class="sec_genre">
     <h3>{{ this.genreKor }}</h3>
-    <div class="slider__wrap">
-      <ul class="slider__items">
+    <div class="genre-slider-wrap">
+      <ul class="genre__slider">
         <li v-bind:key="key" v-for="(item, key) in genreData">
           <a @click="$store.commit('routerMovieInfo', item.id)">
             <div class="genre__thumbnail">
-              <img :src="item.backdrop" alt="포스터">
+              <img :src="item.backdrop" alt="포스터" v-if="item.backdrop !== null">
+              <img src="../assets/img_no_backdrop.png" alt="No-Data" v-if="item.backdrop === null">
             </div>
             <p class="genre__title">{{item.title}}</p>
           </a>
@@ -61,13 +62,14 @@ export default {
           result.forEach((data, idx) => {
             if (idx >= 15) return;
 
-            if (data.backdrop_path) {
-              this.genreData.push({
-                id: data.id,
-                title: data.title,
-                backdrop: this.imgURL.backdrop_s + data.backdrop_path
-              });
-            }
+            this.genreData.push({
+              id: data.id,
+              title: data.title,
+              backdrop:
+                data.backdrop_path === null
+                  ? null
+                  : this.imgURL.backdrop_s + data.backdrop_path
+            });
           });
         })
         .catch(err => {
