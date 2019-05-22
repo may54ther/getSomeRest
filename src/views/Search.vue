@@ -9,7 +9,8 @@
         <li v-bind:key="key" v-for="(search, key) in searchList">
           <a @click="$store.commit('routerMovieInfo', search[0])">
             <div class="search__thumbnail">
-              <img :src="search[1]" alt="포스터">
+              <img :src="search[1]" alt="포스터" v-if="search[1] !== null">
+              <img src="../assets/img_no_poster.png" alt="No-Data" v-if="search[1] === null">
             </div>
             <p class="search__title">{{ search[2] }}</p>
             <p class="search__release">{{ search[3] }}</p>
@@ -38,7 +39,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["url", "params", "imgUrl"])
+    ...mapState(["url", "params", "imgURL"])
   },
   methods: {
     getKeyword(e) {
@@ -64,14 +65,14 @@ export default {
         .then(res => {
           const result = res.data.results;
           result.forEach((data, idx) => {
-            if (data.poster_path) {
-              this.searchList.push([
-                data.id,
-                this.imgUrl.poster + data.poster_path,
-                data.title,
-                data.release_date
-              ]);
-            }
+            this.searchList.push([
+              data.id,
+              data.poster_path === null
+                ? null
+                : this.imgURL.poster + data.poster_path,
+              data.title,
+              data.release_date === "" ? "-" : data.release_date
+            ]);
           });
           return result.length;
         })

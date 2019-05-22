@@ -3,13 +3,18 @@
     <h2>영화 소개</h2>
     <div class="movie__box inner clearfix">
       <div class="box__poster">
-        <img :src="this.movieData.poster_path" alt="포스터">
+        <img :src="movieData.poster_path" alt="포스터" v-if="movieData.poster_path !== null">
+        <img
+          src="../../assets/img_no_poster.png"
+          alt="No-Data"
+          v-if="movieData.poster_path === null"
+        >
       </div>
       <div class="box__txt">
         <h3 class="txt__title">{{ movieData.title }}</h3>
         <dl class="txt__desc">
           <dd class="blind">원작이름</dd>
-          <dt class="desc1">{{movieData.original_title}}, {{movieData.release_date}}</dt>
+          <dt class="desc1">{{movieData.original_title}}</dt>
 
           <dd class="blind">장르, 개봉일, 상영시간, 평점</dd>
           <dt class="desc2">
@@ -58,8 +63,14 @@ export default {
           const result = res.data;
 
           this.movieData = {
-            backdrop_path: this.imgURL.backdrop + result.backdrop_path,
-            poster_path: this.imgURL.poster + result.poster_path,
+            backdrop_path:
+              result.backdrop_path === null
+                ? null
+                : this.imgURL.backdrop + result.backdrop_path,
+            poster_path:
+              result.poster_path === null
+                ? null
+                : this.imgURL.poster + result.poster_path,
             title: result.title,
             original_title: result.original_title,
             release_date: result.release_date,

@@ -1,9 +1,14 @@
 <template>
-  <div class="slider__movie">
+  <div class="slider__popular">
     <h2 class="blind">인기있는 영화</h2>
-    <div class="slider__wrap">
-      <ul class="slider__items">
-        <li v-bind:key="key" v-for="(item, key) in sliderItems">
+    <div class="popular-slider-wrap">
+      <ul class="popular__slider" v-bind:style="{ width : w_width*5 + 'px' }">
+        <li
+          class="slider__item"
+          v-bind:key="key"
+          v-for="(item, key) in sliderItems"
+          v-bind:style="{ width : w_width + 'px'}"
+        >
           <a @click="$store.commit('routerMovieInfo', item.id)">
             <div class="item__img">
               <img :src="item.backdrop" alt="슬라이드 이미지">
@@ -19,13 +24,13 @@
 
       <ul class="slider__buttons">
         <li class="btn__prev">
-          <button>
+          <button @click="handleSlider">
             <span class="blind">이전</span>
             <i class="fas fa-chevron-left"></i>
           </button>
         </li>
         <li class="btn__next">
-          <button>
+          <button @click="handleSlider">
             <span class="blind">다음</span>
             <i class="fas fa-chevron-right"></i>
           </button>
@@ -41,7 +46,9 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      sliderItems: []
+      sliderItems: [],
+      w_width: null,
+      pos: 0
     };
   },
   computed: {
@@ -76,10 +83,37 @@ export default {
           console.log(err);
         })
         .finally(() => {});
+    },
+    handleResize() {
+      this.w_width = window.innerWidth;
+
+      this.pos = 0;
+      document.querySelector(
+        ".popular__slider"
+      ).style.transform = `translate3d(0px, 0, 0)`;
+    },
+    handleSlider(e) {
+      const slider = document.querySelector(".popular__slider");
+      const TARGET_CLASS = e.target.offsetParent.className;
+
+      if (TARGET_CLASS === "btn__prev") {
+        this.pos = this.pos === 0 ? this.w_width * 4 : this.pos - this.w_width;
+        slider.style.transform = `translate3d(-${this.pos}px, 0, 0)`;
+        console.log("L: ", this.pos);
+      } else if (TARGET_CLASS === "btn__next") {
+        this.pos = this.pos === this.w_width * 4 ? 0 : this.pos + this.w_width;
+        slider.style.transform = `translate3d(-${this.pos}px, 0, 0)`;
+        console.log("R: ", this.pos);
+      }
     }
   },
   created() {
     this.getSliderItems();
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <MovieSlider></MovieSlider>
+    <PopularMovies></PopularMovies>
     <div class="content">
       <NowPlayingList></NowPlayingList>
       <article class="content__genre">
@@ -19,12 +19,12 @@
 
 <script>
 import { mapState } from "vuex";
-import MovieSlider from "@/components/MovieSlider";
+import PopularMovies from "@/components/PopularMovies";
 import NowPlayingList from "@/components/NowPlayingList";
 import GenreList from "@/components/GenreList";
 
 export default {
-  components: { MovieSlider, NowPlayingList, GenreList },
+  components: { PopularMovies, NowPlayingList, GenreList },
   data() {
     return {};
   },
