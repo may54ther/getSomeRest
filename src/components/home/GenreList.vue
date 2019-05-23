@@ -6,8 +6,8 @@
         <li v-bind:key="key" v-for="(item, key) in genreData">
           <a @click="$store.commit('routerMovieInfo', item.id)">
             <div class="genre__thumbnail">
-              <img :src="item.backdrop" alt="포스터" v-if="item.backdrop !== null">
-              <img src="../assets/img_no_backdrop.png" alt="No-Data" v-if="item.backdrop === null">
+              <img :src="item.backdrop" alt="배경사진" v-if="item.backdrop !== null">
+              <img src="@/assets/img_no_backdrop.png" alt="No-Data" v-if="item.backdrop === null">
             </div>
             <p class="genre__title">{{item.title}}</p>
           </a>
@@ -34,6 +34,7 @@
 
 <script>
 import { mapState } from "vuex";
+
 export default {
   name: "GenreList",
   props: ["genreNo", "genreKor"],

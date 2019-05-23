@@ -5,7 +5,7 @@
       <li v-bind:key="key" v-for="(item, key) in nowPlayingDatas">
         <a @click="$store.commit('routerMovieInfo', item.id)">
           <div class="now-playing__thumbnail">
-            <img :src="item.poster" alt="포스터">
+            <img :src="item.poster" alt="썸네일">
           </div>
           <p class="now-playing__title">{{ item.title }}</p>
           <span class="now-playing__release">{{ item.release_date }}</span>
