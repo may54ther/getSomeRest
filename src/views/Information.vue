@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     getMovieId(newId) {
-      window.scrollTo(0, 0);
       this.$store.commit("changeMovieId", newId);
 
       this.getMovieData(newId);
