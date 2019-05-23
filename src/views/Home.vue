@@ -10,7 +10,7 @@
           v-for="item in this.allGenres"
           :genreNo="item.id"
           :genreKor="item.kor"
-          :class="item.eng"
+          :genreEng="item.eng"
         ></GenreList>
       </article>
     </div>

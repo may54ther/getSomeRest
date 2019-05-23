@@ -1,8 +1,8 @@
 <template>
   <section class="sec_genre">
     <h3>{{ this.genreKor }}</h3>
-    <div class="genre-slider-wrap">
-      <ul class="genre__slider">
+    <div class="genre-slider-wrap clearfix">
+      <ul class="genre__slider" :class="genreEng">
         <li v-bind:key="key" v-for="(item, key) in genreData">
           <a @click="$store.commit('routerMovieInfo', item.id)">
             <div class="genre__thumbnail">
@@ -16,13 +16,13 @@
 
       <ul class="slider__btns">
         <li class="btn__prev">
-          <button>
+          <button @click.prevent="handleSlider">
             <span class="blind">이전</span>
             <i class="fas fa-chevron-left"></i>
           </button>
         </li>
         <li class="btn__next">
-          <button>
+          <button @click.prevent="handleSlider">
             <span class="blind">다음</span>
             <i class="fas fa-chevron-right"></i>
           </button>
@@ -37,10 +37,12 @@ import { mapState } from "vuex";
 
 export default {
   name: "GenreList",
-  props: ["genreNo", "genreKor"],
+  props: ["genreNo", "genreKor", "genreEng"],
   data() {
     return {
-      genreData: []
+      genreData: [],
+      s_width: null,
+      i: 0
     };
   },
   computed: {
@@ -77,10 +79,39 @@ export default {
           console.log(err);
         })
         .finally(() => {});
+    },
+    handleResize() {
+      this.s_width = document.querySelector(".genre-slider-wrap").offsetWidth;
+
+      document.querySelector(
+        ".genre__slider"
+      ).style.transform = `translate3d(0, 0, 0)`;
+    },
+    handleSlider(e) {
+      const TARGET_CLASS = e.target.offsetParent.className;
+      const SLIDER = document.querySelector("." + this.genreEng);
+      const TOTAL_LENGTH = Math.floor(SLIDER.offsetWidth / this.s_width);
+
+      console.log(SLIDER);
+
+      if (TARGET_CLASS === "btn__prev" && this.i >= 0) {
+        this.i--;
+      } else if (TARGET_CLASS === "btn__next" && this.i < TOTAL_LENGTH) {
+        this.i++;
+      }
+
+      let num = (this.s_width * this.i) % 200;
+      SLIDER.style.transform = `translate3d(-${this.s_width * this.i -
+        num}px, 0, 0)`;
     }
   },
-  created() {
+  mounted() {
     this.getList(this.genreNo);
+    this.handleResize();
+    window.addEventListener("resize", this.handleResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
   }
 };
 </script>

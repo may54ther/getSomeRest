@@ -15,6 +15,9 @@ export default {
   components: { Header, Footer, ButtonTop },
   data() {
     return {};
+  },
+  created() {
+    window.scrollTo(0, 0);
   }
 };
 
