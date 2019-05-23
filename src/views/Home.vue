@@ -19,9 +19,9 @@
 
 <script>
 import { mapState } from "vuex";
-import PopularMovies from "@/components/PopularMovies";
-import NowPlayingList from "@/components/NowPlayingList";
-import GenreList from "@/components/GenreList";
+import PopularMovies from "@/components/home/PopularMovies";
+import NowPlayingList from "@/components/home/NowPlayingList";
+import GenreList from "@/components/home/GenreList";
 
 export default {
   components: { PopularMovies, NowPlayingList, GenreList },

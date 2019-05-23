@@ -11,7 +11,7 @@
         >
           <a @click="$store.commit('routerMovieInfo', item.id)">
             <div class="item__img">
-              <img :src="item.backdrop" alt="슬라이드 이미지">
+              <img :src="item.backdrop" alt="썸네일">
             </div>
             <div class="item__txt">
               <h3 class="txt__title">{{item.title}}</h3>
@@ -88,11 +88,11 @@ export default {
     },
     handleResize() {
       this.w_width = window.innerWidth;
-
       this.pos = 0;
+
       document.querySelector(
         ".popular__slider"
-      ).style.transform = `translate3d(0px, 0, 0)`;
+      ).style.transform = `translate3d(0, 0, 0)`;
     },
     handleSlider(e) {
       const slider = document.querySelector(".popular__slider");
@@ -109,8 +109,8 @@ export default {
   },
   mounted() {
     this.getSliderItems();
-    window.addEventListener("resize", this.handleResize);
     this.handleResize();
+    window.addEventListener("resize", this.handleResize);
   },
   destroyed() {
     window.removeEventListener("resize", this.handleResize);
