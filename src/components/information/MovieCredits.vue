@@ -1,5 +1,5 @@
 <template>
-  <section class="sec__credits">
+  <section class="sec__credits" v-if="movieCrew.length != 0 && movieCast.length != 0">
     <h2>출연진</h2>
     <div class="credits-crew inner" v-if="movieCrew.length != 0">
       <h3>감독</h3>
@@ -45,66 +45,9 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
   name: "MovieCredits",
-  props: ["movieId"],
-  data() {
-    return {
-      movieCast: [],
-      movieCrew: []
-    };
-  },
-  computed: {
-    ...mapState(["url", "params", "imgURL"])
-  },
-  methods: {
-    getMovieCredits(id) {
-      this.axios
-        .get(this.url.TMDb + `/movie/${id}/credits`, {
-          params: {
-            api_key: this.params.apiKey
-          }
-        })
-        .then(res => {
-          const cast = res.data.cast;
-          const crew = res.data.crew;
-
-          crew.forEach((data, idx) => {
-            if (data.job !== "Director") return;
-
-            this.movieCrew.push({
-              name: data.name,
-              profile_path:
-                data.profile_path === null
-                  ? null
-                  : this.$store.state.imgURL.poster + data.profile_path
-            });
-          });
-          cast.forEach((data, idx) => {
-            if (idx >= 8) return;
-
-            this.movieCast.push({
-              character: data.character !== "" ? data.character : "-",
-              name: data.name,
-              profile_path:
-                data.profile_path === null
-                  ? null
-                  : this.$store.state.imgURL.poster + data.profile_path
-            });
-          });
-          console.log(cast);
-        })
-        .catch(err => {
-          console.log(err);
-        })
-        .finally(() => {});
-    }
-  },
-  created() {
-    this.getMovieCredits(this.movieId);
-  }
+  props: ["movieCrew", "movieCast"]
 };
 </script>
 

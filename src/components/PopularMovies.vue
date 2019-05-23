@@ -67,16 +67,18 @@ export default {
           const result = res.data.results;
 
           result.forEach((data, idx) => {
-            if (idx >= 5) return;
+            if (this.sliderItems.length >= 5) return;
 
-            this.sliderItems.push({
-              id: data.id,
-              backdrop: this.imgURL.backdrop + data.backdrop_path,
-              title: data.title,
-              original_title: data.original_title,
-              release_date: data.release_date,
-              overview: data.overview
-            });
+            if (data.backdrop_path) {
+              this.sliderItems.push({
+                id: data.id,
+                backdrop: this.imgURL.backdrop + data.backdrop_path,
+                title: data.title,
+                original_title: data.original_title,
+                release_date: data.release_date,
+                overview: data.overview
+              });
+            }
           });
         })
         .catch(err => {
@@ -99,15 +101,13 @@ export default {
       if (TARGET_CLASS === "btn__prev") {
         this.pos = this.pos === 0 ? this.w_width * 4 : this.pos - this.w_width;
         slider.style.transform = `translate3d(-${this.pos}px, 0, 0)`;
-        console.log("L: ", this.pos);
       } else if (TARGET_CLASS === "btn__next") {
         this.pos = this.pos === this.w_width * 4 ? 0 : this.pos + this.w_width;
         slider.style.transform = `translate3d(-${this.pos}px, 0, 0)`;
-        console.log("R: ", this.pos);
       }
     }
   },
-  created() {
+  mounted() {
     this.getSliderItems();
     window.addEventListener("resize", this.handleResize);
     this.handleResize();

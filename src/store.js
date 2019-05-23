@@ -11,7 +11,6 @@ export default new Vuex.Store({
       discover: "/discover/movie",
       now_playing: "/movie/now_playing",
       search: "/search/movie"
-      // credits: `/movie/movie-id/credits?`
     },
     params: {
       apiKey: "50d58edebb16d9143557fc5550d5d78b",
@@ -45,6 +44,9 @@ export default new Vuex.Store({
   },
   getters: {},
   mutations: {
+    changeMovieId: (state, payload) => {
+      state.movieId = payload;
+    },
     routerMovieInfo: (state, payload) => {
       state.movieId = payload;
       router.push({ path: "/movie/" + state.movieId });
