@@ -79,6 +79,9 @@ npm install
 ### - Compiles and hot-reloads for development
 ```
 npm run serve
+
+npm install -g serve
+serve ./dist
 ```
 
 ### - Compiles and minifies for production
@@ -98,3 +101,12 @@ npm run lint
 
 ### - Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+## Memo
+```
+"build": "vue-cli-service build",
+"dev": "vue-cli-service serve --open --mode development",  // process.env.NODE_ENV === "development"
+"prod": "vue-cli-service serve --open --mode production" // process.env.NODE_ENV === "production"
+```

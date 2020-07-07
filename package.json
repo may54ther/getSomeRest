@@ -4,8 +4,10 @@
   "author": "may54ther <aha9654@gmail.com>",
   "private": true,
   "scripts": {
+    "build": "vue-cli-service build",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "dev": "vue-cli-service serve --open --mode development",
+    "prod": "vue-cli-service serve --open --mode production" 
   },
   "dependencies": {
     "core-js": "^2.6.5",
