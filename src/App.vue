@@ -18,7 +18,7 @@ export default {
   },
   created() {
     window.scrollTo(0, 0);
-    console.log(process.env.NODE_ENV)
+    console.log(process.env, process.env.NODE_ENV)
   }
 };
 

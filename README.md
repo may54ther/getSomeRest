@@ -107,6 +107,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## Memo
 ```
 "build": "vue-cli-service build",
-"dev": "vue-cli-service serve --open --mode development",  // process.env.NODE_ENV === "development"
-"prod": "vue-cli-service serve --open --mode production" // process.env.NODE_ENV === "production"
+"serve": "vue-cli-service serve"
+"dev": "vue-cli-service serve --open --mode development",
+"prod": "vue-cli-service serve --open --mode production" 
 ```
